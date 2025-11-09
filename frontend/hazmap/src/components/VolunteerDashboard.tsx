@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { Checkbox } from './ui/checkbox';
 import { MapView } from './MapView';
 import { UrgencyBadge, type UrgencyLevel } from './UrgencyBadge';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface DeliveryRequest {
   id: string;

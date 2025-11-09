@@ -17,7 +17,7 @@ import {
   AlertDialogTitle,
 } from './ui/alert-dialog';
 import { StatusBadge, type Status } from './StatusBadge';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface Match {
   id: string;
