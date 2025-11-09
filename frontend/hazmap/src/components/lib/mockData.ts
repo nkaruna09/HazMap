@@ -1,5 +1,5 @@
-import type { SupplyItem } from '../components/SupplyCard';
-import type { UrgencyLevel } from '../components/UrgencyBadge';
+import type { SupplyItem } from '../../components/SupplyCard';
+import type { UrgencyLevel } from '../../components/UrgencyBadge';
 
 export const mockRequests: SupplyItem[] = [
   {
