@@ -1,3 +1,4 @@
+from flask import send_file
 from scripts.fetch_firms_data import fetch_firms_data
 from scripts.weather_api import fetch_wind_data
 from scripts.util import create_danger_zones
@@ -29,8 +30,10 @@ def direction_map(start=(-79, 43), end=(-79.404076,43.643518)):
     route_coords = calculate_safe_route(start, end, danger_geojson)
 
     # 5. Visualize
-    return visualize_route(start, end, route_coords, danger_geojson, output_file="data/safe_route_map.html")
+    output_file = "data/safe_route_map.html"
+    visualize_route(start, end, route_coords, danger_geojson, output_file)
 
+    return send_file(output_file)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

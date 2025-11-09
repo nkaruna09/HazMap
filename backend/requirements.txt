@@ -1,0 +1,13 @@
+requests
+python-dotenv
+shapely
+pandas
+geopandas
+folium
+mapbox
+fastapi
+uvicorn
+geojson
+geocoder
+dotenv
+requests
