@@ -5,3 +5,6 @@ folium
 mapbox
 fastapi
 uvicorn
+os
+dotenv
+requests
