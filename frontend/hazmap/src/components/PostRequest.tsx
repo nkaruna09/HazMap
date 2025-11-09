@@ -51,15 +51,48 @@ export function PostRequest({ onNavigate }: PostRequestProps) {
     medical: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Request Posted!', {
-      description: 'Your request is now visible to helpers in your area.',
-    });
-    setTimeout(() => {
-      onNavigate('dashboard');
-    }, 1500);
-  };
+
+    const requestPayload = {
+        itemType,
+        itemName,
+        quantity,
+        urgency,
+        description,
+        streetAddress,
+        city,
+        province,
+        postalCode,
+        contactMethod,
+        specialNeeds,
+    };
+
+    try {
+        const response = await fetch('http://localhost:5000/api/data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestPayload),
+        });
+
+        if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+        }
+
+        toast.success('Request Posted!', {
+        description: 'Your request is now visible to helpers in your area.',
+        });
+
+        setTimeout(() => {
+        onNavigate('dashboard');
+        }, 1500);
+    } catch (error) {
+        console.error('Failed to post request:', error);
+        toast.error('Failed to post request. Please try again.');
+    }
+    };
 
   return (
     <div className="min-h-screen py-8">
