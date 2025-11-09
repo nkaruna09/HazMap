@@ -25,3 +25,5 @@ def visualize_route(start, end, route_coords, danger_geojson_str, output_file="d
     # Save
     m.save(output_file)
     print(f"[INFO] Map saved to {output_file}")
+
+    return m._repr_html_()
