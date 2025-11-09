@@ -1,20 +1,27 @@
 import folium
-from fetch_firms_data import fetch_firms_data  # 👈 import your fetcher
+import geojson
 
-NASA_API_KEY = "YOUR_API_KEY"
-fires = fetch_firms_data()
-
-# Build map
-m = folium.Map(location=[56, -106], zoom_start=4)
-for _, row in fires.iterrows():
-    folium.CircleMarker(
-        location=[row["latitude"], row["longitude"]],
-        radius=3,
-        color="red",
-        fill=True,
-        fill_opacity=0.6,
-        popup=f"Brightness: {row['bright_ti4']}, Date: {row['acq_date']}"
-    ).add_to(m)
-
-m.save("../data/fires_map.html")
-print("[INFO] Map saved to ../data/fires_map.html")
+def visualize_route(start, end, route_coords, danger_geojson_str, output_file="data/safe_route_map.html"):
+    # Load danger zone
+    danger_geojson = geojson.loads(danger_geojson_str)
+    
+    # Center map roughly
+    center_lat = (start[1]+end[1])/2
+    center_lon = (start[0]+end[0])/2
+    m = folium.Map(location=[center_lat, center_lon], zoom_start=10, tiles="CartoDB positron")
+    
+    # Danger zones
+    folium.GeoJson(danger_geojson, style_function=lambda x: {
+        'fillColor': 'red', 'color': 'red', 'opacity': 0.5, 'weight': 1
+    }).add_to(m)
+    
+    # Start/End
+    folium.Marker(location=[start[1], start[0]], popup="Start", icon=folium.Icon(color="green")).add_to(m)
+    folium.Marker(location=[end[1], end[0]], popup="End", icon=folium.Icon(color="blue")).add_to(m)
+    
+    # Route
+    folium.PolyLine([(lat, lon) for lon, lat in route_coords], color='blue', weight=5).add_to(m)
+    
+    # Save
+    m.save(output_file)
+    print(f"[INFO] Map saved to {output_file}")
