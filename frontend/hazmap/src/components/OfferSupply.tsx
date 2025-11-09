@@ -45,15 +45,48 @@ export function OfferSupply({ onNavigate }: OfferSupplyProps) {
   const [availableUntil, setAvailableUntil] = useState('');
   const [deliveryOption, setDeliveryOption] = useState('pickup');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Supply Offer Posted!', {
-      description: 'Your offer is now visible to those in need.',
-    });
-    setTimeout(() => {
-      onNavigate('dashboard');
-    }, 1500);
-  };
+
+    const payload = {
+        itemType,
+        itemName,
+        quantity,
+        condition,
+        description,
+        streetAddress,
+        city,
+        province,
+        postalCode,
+        availableUntil,
+        deliveryOption,
+    };
+
+    try {
+        const response = await fetch('http://localhost:5000/api/data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+        }
+
+        toast.success('Supply Offer Posted!', {
+        description: 'Your offer is now visible to those in need.',
+        });
+
+        setTimeout(() => {
+        onNavigate('dashboard');
+        }, 1500);
+    } catch (error) {
+        console.error('Failed to post supply offer:', error);
+        toast.error('Failed to post offer. Please try again.');
+    }
+    };
 
   return (
     <div className="min-h-screen py-8">
