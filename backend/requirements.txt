@@ -1,0 +1,7 @@
+shapely
+pandas
+geojson
+folium
+mapbox
+fastapi
+uvicorn
