@@ -18,10 +18,10 @@ export function Hero({ onNavigate }: HeroProps) {
               <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
                 <Heart className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-white">ReliefLink</h1>
+              <h1 className="text-white">HazMap</h1>
             </div>
             <p className="text-white/90 mb-8 max-w-3xl mx-auto">
-              Connecting communities in times of crisis. ReliefLink is a peer-to-peer disaster relief platform that instantly matches people who need supplies with those who have them, and volunteers who can help deliver.
+              Connecting communities in times of crisis. HazMap is a peer-to-peer disaster relief platform that instantly matches people who need supplies with those who have them, and volunteers who can help deliver.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -74,7 +74,7 @@ export function Hero({ onNavigate }: HeroProps) {
       <div className="bg-white/80 backdrop-blur-sm py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-gray-900 mb-4">How ReliefLink Works</h2>
+            <h2 className="text-gray-900 mb-4">How HazMap Works</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Our platform makes disaster relief simple, fast, and effective by connecting those in need directly with helpers in their community.
             </p>
@@ -150,7 +150,7 @@ export function Hero({ onNavigate }: HeroProps) {
           <div className="text-center mb-12">
             <h2 className="text-gray-900 mb-4">Built for Crisis Situations</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              ReliefLink is designed with accessibility, speed, and trust at its core to help communities respond quickly during disasters.
+              HazMap is designed with accessibility, speed, and trust at its core to help communities respond quickly during disasters.
             </p>
           </div>
 

@@ -31,7 +31,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
             <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-lg flex items-center justify-center shadow-md">
               <Package className="w-6 h-6 text-white" />
             </div>
-            <span className="text-gray-900">ReliefLink</span>
+            <span className="text-gray-900">HazMap</span>
           </button>
 
           {/* Desktop Navigation */}
