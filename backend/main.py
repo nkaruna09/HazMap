@@ -6,15 +6,24 @@ from scripts.mapbox_api import calculate_safe_route
 from scripts.visualize_fires import visualize_route
 import geocoder
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS  # Import CORS to handle cross-origin requests
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api/data', methods=['GET'])
+@app.route('/api/data', methods=['POST'])
 def direction_map(start=(-79, 43), end=(-79.404076,43.643518)):
     # Enable CORS for all routes
+
+    payload = request.get_json()
+
+    city = payload.get('city')
+    address = payload.get('address')
+
+    # Optionally, check if city and address are provided
+    if not city or not address:
+        return jsonify({"error": "Missing city or address"}), 400
 
     # 1. Fetch fires    
     fires = fetch_firms_data()
@@ -26,6 +35,22 @@ def direction_map(start=(-79, 43), end=(-79.404076,43.643518)):
     danger_geojson = create_danger_zones(fires, wind_speed, wind_deg)
 
     # 4. Calculate safe route
+
+    # Get user's location
+    user_location = geocoder.ip('me')
+    start = (user_location.longitude, user_location.latitude)
+
+    from geopy.geocoders import Nominatim
+
+    # # Set a custom user agent to identify your app
+    geolocator = Nominatim(user_agent="MyGeopyApp")
+
+    # # Try geocoding the location again
+    location = geolocator.geocode(f"{address}, {city}")
+
+    end = (location.longitude, location.latitude)
+    # print(location.address)
+    # print(f"Latitude: {location.latitude}, Longitude: {location.longitude}")
 
     route_coords = calculate_safe_route(start, end, danger_geojson)
 
