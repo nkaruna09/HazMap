@@ -1,0 +1,93 @@
+import type { SupplyItem } from '../components/SupplyCard';
+import type { UrgencyLevel } from '../components/UrgencyBadge';
+
+export const mockRequests: SupplyItem[] = [
+  {
+    id: '1',
+    name: 'Bottled Water',
+    category: 'water',
+    quantity: '50 bottles',
+    distance: '0.8 mi',
+    urgency: 'critical',
+    location: 'Downtown Shelter',
+  },
+  {
+    id: '2',
+    name: 'Baby Formula',
+    category: 'baby',
+    quantity: '5 cans',
+    distance: '1.2 mi',
+    urgency: 'high',
+    location: 'Riverside Community',
+  },
+  {
+    id: '3',
+    name: 'First Aid Supplies',
+    category: 'medical',
+    quantity: '1 kit',
+    distance: '2.1 mi',
+    urgency: 'high',
+    location: 'East Side',
+  },
+  {
+    id: '4',
+    name: 'Non-perishable Food',
+    category: 'food',
+    quantity: '20 meals',
+    distance: '3.5 mi',
+    urgency: 'medium',
+    location: 'Northbrook',
+  },
+  {
+    id: '5',
+    name: 'Portable Generator',
+    category: 'power',
+    quantity: '1 unit',
+    distance: '4.2 mi',
+    urgency: 'medium',
+    location: 'West Valley',
+  },
+];
+
+export const mockSupplies: SupplyItem[] = [
+  {
+    id: '6',
+    name: 'Blankets',
+    category: 'shelter',
+    quantity: '15 pieces',
+    distance: '1.5 mi',
+    urgency: 'low',
+    location: 'Central District',
+    requester: 'Sarah M.',
+  },
+  {
+    id: '7',
+    name: 'Canned Food',
+    category: 'food',
+    quantity: '30 cans',
+    distance: '2.3 mi',
+    urgency: 'low',
+    location: 'Maple Street',
+    requester: 'John D.',
+  },
+  {
+    id: '8',
+    name: 'Flashlights & Batteries',
+    category: 'power',
+    quantity: '10 sets',
+    distance: '0.9 mi',
+    urgency: 'low',
+    location: 'Oak Avenue',
+    requester: 'Maria G.',
+  },
+  {
+    id: '9',
+    name: 'Hygiene Kits',
+    category: 'medical',
+    quantity: '25 kits',
+    distance: '3.1 mi',
+    urgency: 'low',
+    location: 'Pine Hill',
+    requester: 'Community Center',
+  },
+];
